@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Format Pesanan WhatsApp - Ghibli Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ghibli-green: #3A6B56; /* Hijau hutan Totoro */
+            --ghibli-light-green: #689F84;
+            --ghibli-sky: #88B2CC; /* Biru langit Laputa/Howl */
+            --ghibli-red: #DE6B6B; /* Merah ikonik Spirited Away */
+            --ghibli-cream: #FDFBF7; /* Kertas cat air hangat */
+            --ghibli-bg: #EAF2EC; /* Padang rumput lembut */
+            --text-dark: #3C403D;
+            --text-muted: #737A75;
+            --organic-radius: 24px 20px 28px 22px; /* Potongan sudut tidak beraturan ala buatan tangan */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--ghibli-bg) 0%, #E3EDF7 100%);
+            color: var(--text-dark);
+            font-family: 'Comfortaa', cursive, sans-serif;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Dekorasi Elemen Studio Ghibli (Awan & Daun Melayang) */
+        .decor-cloud {
+            position: absolute;
+            background: white;
+            opacity: 0.4;
+            border-radius: 100px;
+            filter: blur(4px);
+            animation: drift 25s infinite linear;
+            z-index: 0;
+        }
+        .cloud-1 { width: 150px; height: 50px; top: 10%; left: -10%; }
+        .cloud-2 { width: 200px; height: 60px; top: 60%; left: -20%; animation-delay: -10s; }
+
+        @keyframes drift {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(calc(100vw + 200px)); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: var(--ghibli-cream);
+            border-radius: var(--organic-radius);
+            box-shadow: 0 12px 32px rgba(58, 107, 86, 0.15);
+            border: 3px solid #E4DDD3;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header bergaya Buku Sketsa Tirai Seni */
+        .header {
+            background: linear-gradient(135deg, var(--ghibli-green) 0%, var(--ghibli-light-green) 100%);
+            color: white;
+            padding: 30px 24px;
+            text-align: center;
+            position: relative;
+            border-bottom: 4px dashed rgba(255,255,255,0.3);
+        }
+
+        .header h1 {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 32px;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+        }
+
+        .header p {
+            font-size: 13px;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        /* Tab Tombol mirip batu pijakan taman halus */
+        .tabs {
+            display: flex;
+            background: #EFEFE9;
+            padding: 8px;
+            gap: 8px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid transparent;
+            background: transparent;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 14px;
+            transition: all 0.25s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--ghibli-cream);
+            color: var(--ghibli-green);
+            border-color: #D3C9BC;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            transform: translateY(-2px);
+        }
+
+        .form-container {
+            padding: 26px;
+            background-image: radial-gradient(rgba(0,0,0,0.02) 1px, transparent 0);
+            background-size: 16px 16px; /* Tekstur bintik kertas halus */
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--ghibli-green);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Input bergaya Gulungan/Buku Sketsa Artisan */
+        input, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #D9DDD7;
+            border-radius: 14px;
+            font-family: 'Comfortaa', sans-serif;
+            font-size: 14px;
+            color: var(--text-dark);
+            background-color: #F7F9F6;
+            outline: none;
+            transition: all 0.25s;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        input:focus, select:focus {
+            border-color: var(--ghibli-light-green);
+            background-color: #FFFFFF;
+            box-shadow: 0 0 0 4px rgba(104, 159, 132, 0.15);
+        }
+
+        /* Bingkai Pratinjau ala Sel Animasi Tradisional */
+        .preview-container {
+            margin-top: 24px;
+            background: #F4EFE6;
+            border: 3px double #C2B7A5;
+            border-radius: 16px;
+            padding: 18px;
+            position: relative;
+        }
+
+        .preview-header {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--ghibli-green);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .preview-box {
+            white-space: pre-wrap;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #FFFFFF;
+            padding: 16px;
+            border-radius: 10px;
+            border: 1px solid #E0D9CD;
+            color: #2D302E;
+            max-height: 280px;
+            overflow-y: auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .btn-group {
+            margin-top: 24px;
+        }
+
+        /* Tombol Lembut & Bouncy */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 16px;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 0px #2A4E3E;
+            background-color: var(--ghibli-green);
+            color: white;
+        }
+
+        .btn:hover {
+            background-color: var(--ghibli-light-green);
+            transform: translateY(2px);
+            box-shadow: 0 4px 0px #2A4E3E;
+        }
+
+        .btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 0px 0px #2A4E3E;
+        }
+
+        /* Toast Notifikasi Magis */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--ghibli-red);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 18px;
+            opacity: 0;
+            box-shadow: 0 8px 20px rgba(222, 107, 107, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 999;
+            border: 2px solid #FFF;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="decor-cloud cloud-1"></div>
+<div class="decor-cloud cloud-2"></div>
+
+<div class="container">
+    <div class="header">
+        <h1>✨ Generator Format Tagihan ✨</h1>
+        <p>Kelola format pesan penagihan Google Maps Sat-Set & Profesional</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('dp')">🍃 Pembayaran DP</button>
+        <button class="tab-btn" onclick="switchTab('pelunasan')">🌾 Pelunasan</button>
+    </div>
+
+    <div class="form-container">
+        <div id="tab-dp" class="tab-content active">
+            <div class="form-group">
+                <label for="dp-layanan">🔮 Jenis Layanan</label>
+                <select id="dp-layanan" oninput="generateDP()">
+                    <option value="Rating Bintang 5">Rating Bintang 5</option>
+                    <option value="Rating Bintang 5 + Ulasan Positif" selected>Rating Bintang 5 + Ulasan Positif</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dp-harga">💰 Harga per Ulasan (Rp)</label>
+                <input type="number" id="dp-harga" value="2500" placeholder="Contoh: 2500" oninput="generateDP()">
+            </div>
+            <div class="form-group">
+                <label for="dp-jumlah">📊 Jumlah Ulasan</label>
+                <input type="number" id="dp-jumlah" value="10" placeholder="Contoh: 10" oninput="generateDP()">
+            </div>
+
+            <div class="preview-container">
+                <div class="preview-header">🎨 Pratinjau Pesan WA</div>
+                <div id="preview-dp" class="preview-box"></div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn" onclick="copyText('preview-dp')">📜 Salin Teks Magis</button>
+            </div>
+        </div>
+
+        <div id="tab-pelunasan" class="tab-content">
+            <div class="form-group">
+                <label for="pelunasan-harga">💰 Sisa Tagihan / Harga Pelunasan (Rp)</label>
+                <input type="number" id="pelunasan-harga" value="15000" placeholder="Contoh: 15000" oninput="generatePelunasan()">
+            </div>
+
+            <div class="preview-container">
+                <div class="preview-header">🎨 Pratinjau Pesan WA</div>
+                <div id="preview-pelunasan" class="preview-box"></div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn" onclick="copyText('preview-pelunasan')">📜 Salin Teks Magis</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="toast" class="toast">✨ Teks berhasil disalin ke memo!</div>
+
+<script>
+    function switchTab(tab) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+        if (tab === 'dp') {
+            document.querySelectorAll('.tab-btn')[0].classList.add('active');
+            document.getElementById('tab-dp').classList.add('active');
+            generateDP();
+        } else {
+            document.querySelectorAll('.tab-btn')[1].classList.add('active');
+            document.getElementById('tab-pelunasan').classList.add('active');
+            generatePelunasan();
+        }
+    }
+
+    function formatRupiah(angka) {
+        return new Intl.NumberFormat('id-ID').format(angka);
+    }
+
+    function generateDP() {
+        const layanan = document.getElementById('dp-layanan').value;
+        const harga = parseInt(document.getElementById('dp-harga').value) || 0;
+        const jumlah = parseInt(document.getElementById('dp-jumlah').value) || 0;
+
+        const totalHarga = harga * jumlah;
+        const dpDibayar = 1000 * jumlah;
+
+        const text = `🧾 PEMBAYARAN DP
+
+*Halo Kak, terima kasih telah mempercayakan layanan ulasan Google Maps kepada kami. 🙏*
+
+📝 Detail Pesanan
+⚜️Jenis Layanan
+*${layanan}*
+⚜️Jumlah = ${jumlah}
+
+💰 Rincian Pembayaran
+⚜️Total Harga = Rp ${formatRupiah(totalHarga)}
+⚜️DP Dibayar  = Rp ${formatRupiah(dpDibayar)}
+
+💳 Metode Pembayaran QRIS
+
+*Mohon berkenan melampirkan bukti pembayaran*`;
+        
+        document.getElementById('preview-dp').innerText = text;
+    }
+
+    function generatePelunasan() {
+        const sisa = parseInt(document.getElementById('pelunasan-harga').value) || 0;
+
+        const text = `✅ PELUNASAN
+
+*Halo Kak, kami informasikan bahwa pesanan ulasan Google Maps Anda telah selesai diproses. 🙏*
+
+⚜️Sisa Tagihan = Rp ${formatRupiah(sisa)}
+
+💳 Metode Pembayaran QRIS
+
+*Mohon berkenan melampirkan bukti pelunasan*`;
+        
+        document.getElementById('preview-pelunasan').innerText = text;
+    }
+
+    function copyText(elementId) {
+        const text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }).catch(err => {
+            alert('Gagal menyalin teks: ', err);
+        });
+    }
+
+    window.onload = function() {
+        generateDP();
+    };
+</script>
+
+</body>
+</html>
