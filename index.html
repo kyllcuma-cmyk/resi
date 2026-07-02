@@ -2,27 +2,30 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generator Format Pesanan WhatsApp - Ghibli Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Generator Format Pesanan WhatsApp - Profesional Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Patrick+Hand&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
     <style>
         :root {
-            --ghibli-green: #3A6B56; /* Hijau hutan Totoro */
+            --ghibli-green: #3A6B56; 
             --ghibli-light-green: #689F84;
-            --ghibli-sky: #88B2CC; /* Biru langit Laputa/Howl */
-            --ghibli-red: #DE6B6B; /* Merah ikonik Spirited Away */
-            --ghibli-cream: #FDFBF7; /* Kertas cat air hangat */
-            --ghibli-bg: #EAF2EC; /* Padang rumput lembut */
+            --ghibli-sky: #88B2CC; 
+            --ghibli-red: #DE6B6B; 
+            --ghibli-cream: #FDFBF7; 
+            --ghibli-bg: #EAF2EC; 
             --text-dark: #3C403D;
             --text-muted: #737A75;
-            --organic-radius: 24px 20px 28px 22px; /* Potongan sudut tidak beraturan ala buatan tangan */
+            --organic-radius: 24px 20px 28px 22px; 
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
         }
 
         body {
@@ -34,11 +37,8 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
         }
 
-        /* Dekorasi Elemen Studio Ghibli (Awan & Daun Melayang) */
         .decor-cloud {
             position: absolute;
             background: white;
@@ -68,7 +68,6 @@
             z-index: 1;
         }
 
-        /* Header bergaya Buku Sketsa Tirai Seni */
         .header {
             background: linear-gradient(135deg, var(--ghibli-green) 0%, var(--ghibli-light-green) 100%);
             color: white;
@@ -77,22 +76,31 @@
             position: relative;
             border-bottom: 4px dashed rgba(255,255,255,0.3);
         }
+        
+        .header-logo-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        
+        .header-logo-wrap svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+            filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.15));
+        }
 
         .header h1 {
             font-family: 'Patrick Hand', cursive;
             font-size: 32px;
             letter-spacing: 1px;
-            margin-bottom: 6px;
             text-shadow: 2px 2px 0px rgba(0,0,0,0.15);
         }
 
-        .header p {
-            font-size: 13px;
-            opacity: 0.95;
-            font-weight: 500;
-        }
+        .header p { font-size: 13px; opacity: 0.95; font-weight: 500; }
 
-        /* Tab Tombol mirip batu pijakan taman halus */
         .tabs {
             display: flex;
             background: #EFEFE9;
@@ -125,13 +133,10 @@
         .form-container {
             padding: 26px;
             background-image: radial-gradient(rgba(0,0,0,0.02) 1px, transparent 0);
-            background-size: 16px 16px; /* Tekstur bintik kertas halus */
+            background-size: 16px 16px; 
         }
 
-        .tab-content {
-            display: none;
-        }
-
+        .tab-content { display: none; }
         .tab-content.active {
             display: block;
             animation: fadeIn 0.4s ease-out;
@@ -142,9 +147,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .form-group { margin-bottom: 20px; }
 
         label {
             display: block;
@@ -157,7 +160,6 @@
             gap: 6px;
         }
 
-        /* Input bergaya Gulungan/Buku Sketsa Artisan */
         input, select {
             width: 100%;
             padding: 12px 16px;
@@ -178,7 +180,6 @@
             box-shadow: 0 0 0 4px rgba(104, 159, 132, 0.15);
         }
 
-        /* Bingkai Pratinjau ala Sel Animasi Tradisional */
         .preview-container {
             margin-top: 24px;
             background: #F4EFE6;
@@ -215,16 +216,21 @@
 
         .btn-group {
             margin-top: 24px;
+            display: flex;
+            gap: 12px;
         }
 
-        /* Tombol Lembut & Bouncy */
+        @media (max-width: 480px) {
+            .btn-group { flex-direction: column; }
+        }
+
         .btn {
-            width: 100%;
+            flex: 1;
             padding: 14px;
             border: none;
             border-radius: 16px;
             font-family: 'Patrick Hand', cursive;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -248,29 +254,237 @@
             box-shadow: 0 0px 0px #2A4E3E;
         }
 
-        /* Toast Notifikasi Magis */
+        .btn-secondary {
+            background-color: var(--ghibli-sky);
+            box-shadow: 0 6px 0px #4A7A9A;
+        }
+        .btn-secondary:hover {
+            background-color: #9FC3DA;
+            box-shadow: 0 4px 0px #4A7A9A;
+        }
+        .btn-secondary:active {
+            box-shadow: 0 0px 0px #4A7A9A;
+        }
+
+        /* PERBAIKAN FINAL BUG TOAST:
+           Menggunakan margin: 0 auto; agar notif tepat di tengah secara natural tanpa merusak margin layar (no translateX).
+        */
         .toast {
             position: fixed;
             bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--ghibli-red);
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: fit-content;
+            max-width: 85vw;
+            
+            background: var(--ghibli-green);
             color: white;
             padding: 12px 28px;
             border-radius: 30px;
             font-family: 'Patrick Hand', cursive;
             font-size: 18px;
             opacity: 0;
-            box-shadow: 0 8px 20px rgba(222, 107, 107, 0.3);
+            box-shadow: 0 8px 20px rgba(58, 107, 86, 0.3);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 999;
             border: 2px solid #FFF;
+            text-align: center;
+            pointer-events: none;
+            
+            transform: translateY(150px);
+        }
+        .toast.show { 
+            transform: translateY(0); 
+            opacity: 1; 
         }
 
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
+        /* =========================================
+           STYLE RESI INVOICE (RAMPING & MEMANJANG)
+           ========================================= */
+        #receipt-wrapper {
+            position: fixed;
+            top: 0;
+            left: -3000px; 
+            z-index: -9999;
+            pointer-events: none;
         }
+
+        .receipt-card {
+            width: 380px;
+            background: #FFFFFF;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            color: #1A1C1A;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            border-top: 12px solid var(--ghibli-green);
+            border-bottom: 12px solid var(--ghibli-green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 280px;
+            opacity: 0.03;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .watermark svg { width: 100%; height: 100%; fill: #000; }
+
+        .receipt-content-wrapper {
+            padding: 40px 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .inv-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px dashed #E8EBE9;
+            padding-bottom: 25px;
+        }
+        .inv-brand-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        .inv-brand-wrap svg {
+            width: 36px;
+            height: 36px;
+            fill: var(--ghibli-green);
+        }
+        .inv-brand h2 {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 32px;
+            color: var(--ghibli-green);
+            margin-bottom: 2px;
+        }
+        .inv-brand p {
+            font-size: 12px;
+            color: #666;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .inv-meta {
+            margin-top: 15px;
+            width: 100%;
+        }
+        .inv-meta h3 {
+            font-size: 22px;
+            color: #333;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+        .inv-meta p {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .inv-stamp-wrap {
+            text-align: center;
+            margin: 10px 0 25px 0;
+        }
+        .inv-stamp {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 15px;
+            padding: 8px 20px;
+            border-radius: 6px;
+            transform: rotate(-3deg);
+            letter-spacing: 1.5px;
+        }
+        .stamp-dp { border: 3px solid #E4A11B; color: #E4A11B; background: rgba(228, 161, 27, 0.05); }
+        .stamp-lunas { border: 3px solid var(--ghibli-light-green); color: var(--ghibli-light-green); background: rgba(104, 159, 132, 0.05); }
+
+        .inv-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .inv-table th {
+            background: #F4F7F5;
+            color: #444;
+            font-size: 11px;
+            text-transform: uppercase;
+            padding: 12px 8px;
+            text-align: left;
+            border-bottom: 2px solid #D5E0D9;
+        }
+        
+        /* PERBAIKAN BUG RP NUMPUK: 
+           white-space: nowrap memastikan teks "Rp 25.000" tetap memanjang lurus ke samping (1 baris).
+        */
+        .inv-table th.right, .inv-table td.right { 
+            text-align: right; 
+            white-space: nowrap; 
+        }
+        
+        .inv-table td {
+            padding: 16px 8px;
+            font-size: 13px;
+            border-bottom: 1px solid #E8EBE9;
+            color: #333;
+        }
+        .inv-table td.desc strong {
+            display: block;
+            font-size: 14px;
+            color: #111;
+            margin-bottom: 4px;
+        }
+
+        .inv-summary {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+            color: #555;
+        }
+        .summary-row.total {
+            border-top: 2px dashed #D5E0D9;
+            padding-top: 14px;
+            margin-top: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--ghibli-green);
+        }
+
+        .inv-notes {
+            background: #F9FAF9;
+            border-left: 4px solid var(--ghibli-green);
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #555;
+            line-height: 1.6;
+        }
+        .inv-notes strong { color: #333; display: block; margin-bottom: 4px; }
+
+        .inv-footer {
+            background: #F9FAF9;
+            padding: 24px 30px;
+            text-align: center;
+            border-top: 1px solid #E8EBE9;
+        }
+        .inv-footer p {
+            font-size: 12px;
+            color: #777;
+            line-height: 1.6;
+        }
+        .inv-footer strong { color: var(--ghibli-green); }
     </style>
 </head>
 <body>
@@ -280,8 +494,13 @@
 
 <div class="container">
     <div class="header">
-        <h1>✨ Generator Format Tagihan ✨</h1>
-        <p>Kelola format pesan penagihan Google Maps Sat-Set & Profesional</p>
+        <div class="header-logo-wrap">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C22,3 21,8 17,8ZM11.83,16.27C9.3,15.65 7.6,13.8 6.5,11.2C8.7,13.7 11.5,14.6 14.3,14C15.8,13.6 17.4,12.3 18.5,10.6C17.3,13.2 14.8,15.4 11.83,16.27Z"/>
+            </svg>
+            <h1>Generator Tagihan</h1>
+        </div>
+        <p>Kelola format pesan penagihan Google Maps Sat-Set</p>
     </div>
 
     <div class="tabs">
@@ -290,6 +509,7 @@
     </div>
 
     <div class="form-container">
+        <!-- TAB DP -->
         <div id="tab-dp" class="tab-content active">
             <div class="form-group">
                 <label for="dp-layanan">🔮 Jenis Layanan</label>
@@ -313,10 +533,12 @@
             </div>
 
             <div class="btn-group">
-                <button class="btn" onclick="copyText('preview-dp')">📜 Salin Teks Magis</button>
+                <button class="btn" onclick="copyText('preview-dp')">📜 Salin Teks</button>
+                <button class="btn btn-secondary" onclick="downloadImage('dp')">🖼️ Unduh Invoice</button>
             </div>
         </div>
 
+        <!-- TAB PELUNASAN -->
         <div id="tab-pelunasan" class="tab-content">
             <div class="form-group">
                 <label for="pelunasan-harga">💰 Sisa Tagihan / Harga Pelunasan (Rp)</label>
@@ -329,13 +551,55 @@
             </div>
 
             <div class="btn-group">
-                <button class="btn" onclick="copyText('preview-pelunasan')">📜 Salin Teks Magis</button>
+                <button class="btn" onclick="copyText('preview-pelunasan')">📜 Salin Teks</button>
+                <button class="btn btn-secondary" onclick="downloadImage('pelunasan')">🖼️ Unduh Invoice</button>
             </div>
         </div>
     </div>
 </div>
 
-<div id="toast" class="toast">✨ Teks berhasil disalin ke memo!</div>
+<div id="toast" class="toast">✨ Pesan berhasil magis!</div>
+
+<!-- =======================================================
+     TEMPLATE INVOICE PROFESIONAL TERSEMBUNYI (Utk Gambar)
+     ======================================================= -->
+<div id="receipt-wrapper">
+    <div id="receipt-card" class="receipt-card">
+        
+        <div class="watermark">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C22,3 21,8 17,8ZM11.83,16.27C9.3,15.65 7.6,13.8 6.5,11.2C8.7,13.7 11.5,14.6 14.3,14C15.8,13.6 17.4,12.3 18.5,10.6C17.3,13.2 14.8,15.4 11.83,16.27Z"/>
+            </svg>
+        </div>
+
+        <div class="receipt-content-wrapper">
+            <div class="inv-header">
+                <div class="inv-brand">
+                    <div class="inv-brand-wrap">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C22,3 21,8 17,8ZM11.83,16.27C9.3,15.65 7.6,13.8 6.5,11.2C8.7,13.7 11.5,14.6 14.3,14C15.8,13.6 17.4,12.3 18.5,10.6C17.3,13.2 14.8,15.4 11.83,16.27Z"/>
+                        </svg>
+                        <h2>Studio Ulasan</h2>
+                    </div>
+                    <p>Layanan Digital Profesional</p>
+                </div>
+                <div class="inv-meta">
+                    <h3>INVOICE</h3>
+                    <p>No: <strong id="inv-number">INV-000000</strong></p>
+                    <p>Tanggal: <strong id="inv-date">01 Jan 2024</strong></p>
+                </div>
+            </div>
+
+            <div id="inv-body">
+                <!-- Konten Tabel Injeksi JS -->
+            </div>
+        </div>
+        
+        <div class="inv-footer">
+            <p>Terima kasih atas kepercayaan Anda menggunakan layanan <strong>Studio Ulasan</strong>.<br>Mohon simpan invoice ini sebagai bukti transaksi yang sah.</p>
+        </div>
+    </div>
+</div>
 
 <script>
     function switchTab(tab) {
@@ -357,6 +621,16 @@
         return new Intl.NumberFormat('id-ID').format(angka);
     }
 
+    function showToast(message, isError = false) {
+        const toast = document.getElementById('toast');
+        toast.innerText = message;
+        toast.style.background = isError ? 'var(--ghibli-red)' : 'var(--ghibli-green)';
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
     function generateDP() {
         const layanan = document.getElementById('dp-layanan').value;
         const harga = parseInt(document.getElementById('dp-harga').value) || 0;
@@ -365,53 +639,154 @@
         const totalHarga = harga * jumlah;
         const dpDibayar = 1000 * jumlah;
 
-        const text = `🧾 PEMBAYARAN DP
-
-*Halo Kak, terima kasih telah mempercayakan layanan ulasan Google Maps kepada kami. 🙏*
-
-📝 Detail Pesanan
-⚜️Jenis Layanan
-*${layanan}*
-⚜️Jumlah = ${jumlah}
-
-💰 Rincian Pembayaran
-⚜️Total Harga = Rp ${formatRupiah(totalHarga)}
-⚜️DP Dibayar  = Rp ${formatRupiah(dpDibayar)}
-
-💳 Metode Pembayaran QRIS
-
-*Mohon berkenan melampirkan bukti pembayaran*`;
-        
+        const text = `🧾 PEMBAYARAN DP\n\n*Halo Kak, terima kasih telah mempercayakan layanan ulasan Google Maps kepada kami. 🙏*\n\n📝 Detail Pesanan\n⚜️Jenis Layanan\n*${layanan}*\n⚜️Jumlah = ${jumlah}\n\n💰 Rincian Pembayaran\n⚜️Total Harga = Rp ${formatRupiah(totalHarga)}\n⚜️DP Dibayar  = Rp ${formatRupiah(dpDibayar)}\n\n💳 Metode Pembayaran QRIS\n\n*Mohon berkenan melampirkan bukti pembayaran*`;
         document.getElementById('preview-dp').innerText = text;
     }
 
     function generatePelunasan() {
         const sisa = parseInt(document.getElementById('pelunasan-harga').value) || 0;
-
-        const text = `✅ PELUNASAN
-
-*Halo Kak, kami informasikan bahwa pesanan ulasan Google Maps Anda telah selesai diproses. 🙏*
-
-⚜️Sisa Tagihan = Rp ${formatRupiah(sisa)}
-
-💳 Metode Pembayaran QRIS
-
-*Mohon berkenan melampirkan bukti pelunasan*`;
-        
+        const text = `✅ PELUNASAN\n\n*Halo Kak, kami informasikan bahwa pesanan ulasan Google Maps Anda telah selesai diproses. 🙏*\n\n⚜️Sisa Tagihan = Rp ${formatRupiah(sisa)}\n\n💳 Metode Pembayaran QRIS\n\n*Mohon berkenan melampirkan bukti pelunasan*`;
         document.getElementById('preview-pelunasan').innerText = text;
     }
 
     function copyText(elementId) {
         const text = document.getElementById(elementId).innerText;
         navigator.clipboard.writeText(text).then(() => {
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2000);
+            showToast("✨ Teks berhasil disalin ke memo!");
         }).catch(err => {
-            alert('Gagal menyalin teks: ', err);
+            showToast("❌ Gagal menyalin teks.", true);
         });
+    }
+
+    // Generate Nomor Invoice Acak
+    function generateInvoiceNumber() {
+        const now = new Date();
+        const datePart = now.getFullYear().toString() + 
+                         (now.getMonth()+1).toString().padStart(2, '0') + 
+                         now.getDate().toString().padStart(2, '0');
+        const randomPart = Math.floor(1000 + Math.random() * 9000);
+        return `INV-${datePart}-${randomPart}`;
+    }
+
+    function downloadImage(type) {
+        showToast("⏳ Sedang menyusun Invoice...");
+
+        const receiptCard = document.getElementById('receipt-card');
+        const invBody = document.getElementById('inv-body');
+        const invDate = document.getElementById('inv-date');
+        const invNumber = document.getElementById('inv-number');
+
+        // Set Data General
+        const now = new Date();
+        const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        invDate.innerText = now.toLocaleDateString('id-ID', options).replace(',', '');
+        const invoiceID = generateInvoiceNumber();
+        invNumber.innerText = invoiceID;
+
+        let filename = '';
+
+        // TAMPILAN JIKA DP
+        if (type === 'dp') {
+            const layanan = document.getElementById('dp-layanan').value;
+            const harga = parseInt(document.getElementById('dp-harga').value) || 0;
+            const jumlah = parseInt(document.getElementById('dp-jumlah').value) || 0;
+            const total = harga * jumlah;
+            const dp = 1000 * jumlah;
+            const sisa = total - dp;
+
+            invBody.innerHTML = `
+                <div class="inv-stamp-wrap">
+                    <div class="inv-stamp stamp-dp">MENUNGGU DP</div>
+                </div>
+                <table class="inv-table">
+                    <thead>
+                        <tr>
+                            <th>Layanan</th>
+                            <th class="right">Qty</th>
+                            <th class="right">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="desc">
+                                <strong>${layanan}</strong>
+                                Rp ${formatRupiah(harga)}/Ulasan
+                            </td>
+                            <td class="right">${jumlah}</td>
+                            <td class="right">Rp ${formatRupiah(total)}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="inv-summary">
+                    <div class="summary-row"><span>Total Keseluruhan:</span><span>Rp ${formatRupiah(total)}</span></div>
+                    <div class="summary-row"><span>Sisa Tagihan Nanti:</span><span>Rp ${formatRupiah(sisa)}</span></div>
+                    <div class="summary-row total"><span>DP DIBAYAR:</span><span>Rp ${formatRupiah(dp)}</span></div>
+                </div>
+                <div class="inv-notes">
+                    <strong>Catatan:</strong>
+                    Pengerjaan layanan akan segera diproses setelah pembayaran DP kami terima & konfirmasi.
+                </div>
+            `;
+            filename = `${invoiceID}_DP.png`;
+        } 
+        
+        // TAMPILAN JIKA PELUNASAN
+        else {
+            const sisa = parseInt(document.getElementById('pelunasan-harga').value) || 0;
+            
+            invBody.innerHTML = `
+                <div class="inv-stamp-wrap">
+                    <div class="inv-stamp stamp-lunas">SIAP DILUNASI</div>
+                </div>
+                <table class="inv-table">
+                    <thead>
+                        <tr>
+                            <th>Deskripsi Layanan</th>
+                            <th class="right">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="desc">
+                                <strong>Penyelesaian Pesanan</strong>
+                                Pembayaran sisa tagihan akhir
+                            </td>
+                            <td class="right">Rp ${formatRupiah(sisa)}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="inv-summary">
+                    <div class="summary-row total">
+                        <span>TOTAL PELUNASAN:</span>
+                        <span>Rp ${formatRupiah(sisa)}</span>
+                    </div>
+                </div>
+                <div class="inv-notes">
+                    <strong>Catatan:</strong>
+                    Seluruh pengerjaan telah selesai 100%. Mohon segera menyelesaikan pelunasan tagihan.
+                </div>
+            `;
+            filename = `${invoiceID}_Pelunasan.png`;
+        }
+
+        // Delay Rendering untuk Canvas
+        setTimeout(() => {
+            html2canvas(receiptCard, {
+                scale: 3, 
+                backgroundColor: null,
+                logging: false,
+                useCORS: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = filename;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                showToast("🖼️ Invoice berhasil diunduh!");
+            }).catch(err => {
+                console.error(err);
+                showToast("❌ Gagal membuat gambar.", true);
+            });
+        }, 300);
     }
 
     window.onload = function() {
