@@ -266,9 +266,6 @@
             box-shadow: 0 0px 0px #4A7A9A;
         }
 
-        /* PERBAIKAN FINAL BUG TOAST:
-           Menggunakan margin: 0 auto; agar notif tepat di tengah secara natural tanpa merusak margin layar (no translateX).
-        */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -277,7 +274,6 @@
             margin: 0 auto;
             width: fit-content;
             max-width: 85vw;
-            
             background: var(--ghibli-green);
             color: white;
             padding: 12px 28px;
@@ -291,7 +287,6 @@
             border: 2px solid #FFF;
             text-align: center;
             pointer-events: none;
-            
             transform: translateY(150px);
         }
         .toast.show { 
@@ -300,7 +295,7 @@
         }
 
         /* =========================================
-           STYLE RESI INVOICE (RAMPING & MEMANJANG)
+           STYLE RESI INVOICE (RASIO KARTU UNTUK WHATSAPP)
            ========================================= */
         #receipt-wrapper {
             position: fixed;
@@ -311,7 +306,7 @@
         }
 
         .receipt-card {
-            width: 380px;
+            width: 500px; 
             background: #FFFFFF;
             border-radius: 8px;
             font-family: 'Inter', sans-serif;
@@ -328,8 +323,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 280px;
-            height: 280px;
+            width: 350px;
+            height: 350px;
             opacity: 0.03;
             z-index: 0;
             pointer-events: none;
@@ -337,7 +332,7 @@
         .watermark svg { width: 100%; height: 100%; fill: #000; }
 
         .receipt-content-wrapper {
-            padding: 40px 24px;
+            padding: 35px 35px 25px 35px;
             position: relative;
             z-index: 1;
         }
@@ -347,9 +342,9 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border-bottom: 2px dashed #E8EBE9;
-            padding-bottom: 25px;
+            padding-bottom: 20px;
         }
         .inv-brand-wrap {
             display: flex;
@@ -375,7 +370,7 @@
             text-transform: uppercase;
         }
         .inv-meta {
-            margin-top: 15px;
+            margin-top: 12px;
             width: 100%;
         }
         .inv-meta h3 {
@@ -390,61 +385,51 @@
             line-height: 1.6;
         }
 
+        /* Area Stempel Atas Kanan Dikosongkan, tapi wadahnya tetap */
         .inv-stamp-wrap {
-            text-align: center;
-            margin: 10px 0 25px 0;
+            position: absolute;
+            top: 35px;
+            right: 35px;
         }
-        .inv-stamp {
-            display: inline-block;
-            font-weight: 700;
-            font-size: 15px;
-            padding: 8px 20px;
-            border-radius: 6px;
-            transform: rotate(-3deg);
-            letter-spacing: 1.5px;
-        }
-        .stamp-dp { border: 3px solid #E4A11B; color: #E4A11B; background: rgba(228, 161, 27, 0.05); }
-        .stamp-lunas { border: 3px solid var(--ghibli-light-green); color: var(--ghibli-light-green); background: rgba(104, 159, 132, 0.05); }
 
         .inv-table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            margin-top: 25px;
         }
         .inv-table th {
             background: #F4F7F5;
             color: #444;
-            font-size: 11px;
+            font-size: 12px;
             text-transform: uppercase;
-            padding: 12px 8px;
+            padding: 12px;
             text-align: left;
             border-bottom: 2px solid #D5E0D9;
         }
         
-        /* PERBAIKAN BUG RP NUMPUK: 
-           white-space: nowrap memastikan teks "Rp 25.000" tetap memanjang lurus ke samping (1 baris).
-        */
         .inv-table th.right, .inv-table td.right { 
             text-align: right; 
             white-space: nowrap; 
         }
         
         .inv-table td {
-            padding: 16px 8px;
-            font-size: 13px;
+            padding: 16px 12px;
+            font-size: 14px;
             border-bottom: 1px solid #E8EBE9;
             color: #333;
         }
         .inv-table td.desc strong {
             display: block;
-            font-size: 14px;
+            font-size: 15px;
             color: #111;
             margin-bottom: 4px;
         }
 
         .inv-summary {
-            width: 100%;
-            margin-bottom: 30px;
+            width: 70%; 
+            margin-left: auto;
+            margin-bottom: 25px;
         }
         .summary-row {
             display: flex;
@@ -475,7 +460,7 @@
 
         .inv-footer {
             background: #F9FAF9;
-            padding: 24px 30px;
+            padding: 20px 30px;
             text-align: center;
             border-top: 1px solid #E8EBE9;
         }
@@ -485,6 +470,50 @@
             line-height: 1.6;
         }
         .inv-footer strong { color: var(--ghibli-green); }
+
+        /* =========================================
+           STYLE CAP NATURAL (STAMP KIRI BAWAH)
+           ========================================= */
+        .stamp-natural {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 130px;
+            height: 130px;
+            transform: rotate(-12deg);
+            opacity: 0.85;
+            mix-blend-mode: multiply;
+        }
+
+        .stamp-natural svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .stamp-natural .stamp-text {
+            position: relative;
+            z-index: 2;
+            font-family: 'Patrick Hand', cursive;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.1;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .stamp-dp-natural {
+            color: #D32F2F; /* Warna Merah ala Stempel Klasik */
+        }
+
+        .stamp-lunas-natural {
+            color: var(--ghibli-green); /* Warna Hijau Natural */
+        }
+
     </style>
 </head>
 <body>
@@ -573,6 +602,9 @@
         </div>
 
         <div class="receipt-content-wrapper">
+            
+            <div class="inv-stamp-wrap" id="inv-stamp-container"></div>
+
             <div class="inv-header">
                 <div class="inv-brand">
                     <div class="inv-brand-wrap">
@@ -675,6 +707,7 @@
         const invBody = document.getElementById('inv-body');
         const invDate = document.getElementById('inv-date');
         const invNumber = document.getElementById('inv-number');
+        const invStampContainer = document.getElementById('inv-stamp-container');
 
         // Set Data General
         const now = new Date();
@@ -694,10 +727,9 @@
             const dp = 1000 * jumlah;
             const sisa = total - dp;
 
+            invStampContainer.innerHTML = ''; // Kosongkan stempel dari pojok kanan
+
             invBody.innerHTML = `
-                <div class="inv-stamp-wrap">
-                    <div class="inv-stamp stamp-dp">MENUNGGU DP</div>
-                </div>
                 <table class="inv-table">
                     <thead>
                         <tr>
@@ -717,10 +749,25 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="inv-summary">
-                    <div class="summary-row"><span>Total Keseluruhan:</span><span>Rp ${formatRupiah(total)}</span></div>
-                    <div class="summary-row"><span>Sisa Tagihan Nanti:</span><span>Rp ${formatRupiah(sisa)}</span></div>
-                    <div class="summary-row total"><span>DP DIBAYAR:</span><span>Rp ${formatRupiah(dp)}</span></div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; gap: 15px;">
+                    <!-- Bagian Cap Natural Di Kiri -->
+                    <div style="flex: 1; display: flex; justify-content: center;">
+                        <div class="stamp-natural stamp-dp-natural">
+                            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" stroke-width="8" stroke-dasharray="0 15.7" stroke-linecap="round"/>
+                                <circle cx="100" cy="100" r="87" fill="none" stroke="currentColor" stroke-width="6"/>
+                                <circle cx="100" cy="100" r="77" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="100" cy="100" r="72" fill="none" stroke="currentColor" stroke-width="1"/>
+                            </svg>
+                            <div class="stamp-text" style="font-size: 23px;">MENUNGGU<br>DP</div>
+                        </div>
+                    </div>
+                    <!-- Bagian Rincian Di Kanan -->
+                    <div class="inv-summary" style="width: 65%; margin-bottom: 0;">
+                        <div class="summary-row"><span>Total Keseluruhan:</span><span>Rp ${formatRupiah(total)}</span></div>
+                        <div class="summary-row"><span>Sisa Tagihan Nanti:</span><span>Rp ${formatRupiah(sisa)}</span></div>
+                        <div class="summary-row total"><span>DP DIBAYAR:</span><span>Rp ${formatRupiah(dp)}</span></div>
+                    </div>
                 </div>
                 <div class="inv-notes">
                     <strong>Catatan:</strong>
@@ -734,10 +781,9 @@
         else {
             const sisa = parseInt(document.getElementById('pelunasan-harga').value) || 0;
             
+            invStampContainer.innerHTML = ''; // Kosongkan stempel dari pojok kanan
+
             invBody.innerHTML = `
-                <div class="inv-stamp-wrap">
-                    <div class="inv-stamp stamp-lunas">SIAP DILUNASI</div>
-                </div>
                 <table class="inv-table">
                     <thead>
                         <tr>
@@ -755,10 +801,25 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="inv-summary">
-                    <div class="summary-row total">
-                        <span>TOTAL PELUNASAN:</span>
-                        <span>Rp ${formatRupiah(sisa)}</span>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; gap: 15px;">
+                    <!-- Bagian Cap Natural Di Kiri -->
+                    <div style="flex: 1; display: flex; justify-content: center;">
+                        <div class="stamp-natural stamp-lunas-natural">
+                            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" stroke-width="8" stroke-dasharray="0 15.7" stroke-linecap="round"/>
+                                <circle cx="100" cy="100" r="87" fill="none" stroke="currentColor" stroke-width="6"/>
+                                <circle cx="100" cy="100" r="77" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="100" cy="100" r="72" fill="none" stroke="currentColor" stroke-width="1"/>
+                            </svg>
+                            <div class="stamp-text" style="font-size: 30px;">LUNAS</div>
+                        </div>
+                    </div>
+                    <!-- Bagian Rincian Di Kanan -->
+                    <div class="inv-summary" style="width: 65%; margin-bottom: 0;">
+                        <div class="summary-row total">
+                            <span>TOTAL PELUNASAN:</span>
+                            <span>Rp ${formatRupiah(sisa)}</span>
+                        </div>
                     </div>
                 </div>
                 <div class="inv-notes">
